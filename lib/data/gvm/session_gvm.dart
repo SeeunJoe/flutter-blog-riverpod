@@ -36,7 +36,7 @@ class SessionGVM extends Notifier<SessionUser>{
       ScaffoldMessenger.of(mContext!).showSnackBar(
         SnackBar(content: Text("회원가입 실패 : ${responseBody["errorMessage"]}")),
       );
-      return;
+      return; // return에 값을 안넣으면 종료!
     }
     Navigator.pushNamed(mContext, "/login");
   }

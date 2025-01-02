@@ -19,7 +19,8 @@ class UserRepository{
 
     // final responseBody = response.data;
     // Map<String,dynamic> body = response.data["response"];
-    Map<String,dynamic> body = response.data; // success와 errormessage모두 포함한 data 모두를 받아와서 vm으로 넘겨야해
+    Map<String,dynamic> body = response.data; //response의 header와 body중에 body이다.
+    // success와 errormessage모두 포함한 data 모두를 받아와서 vm으로 넘겨야해
     Logger().d(body); //test 코드 작성, 직접해보기
     return body;
 
