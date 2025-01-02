@@ -7,7 +7,7 @@ import 'package:flutter_blog/ui/pages/post/write_page/post_write_page.dart';
 import 'package:flutter_blog/ui/pages/splash/splash_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// ToDo : 모름
+// TODO : 1. Stack의 가장 위 context를 알고 있다.
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
