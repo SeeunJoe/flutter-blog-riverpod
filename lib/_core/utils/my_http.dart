@@ -3,10 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final baseUrl = "http://192.168.0.133:8080";
 
-
-//로그인 되면, dio에 jwt 추가하기
-//dio.options.headers['Authorization'] = 'Bearer $_accessToken';
-final dio = Dio( //final이어도 안의 내용은 바꿀 수 있다.
+final dio = Dio(
   BaseOptions(
     baseUrl: baseUrl, // 내 IP 입력
     contentType: "application/json; charset=utf-8",

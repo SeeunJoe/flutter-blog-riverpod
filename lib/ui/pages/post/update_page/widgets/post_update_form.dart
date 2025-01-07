@@ -5,12 +5,15 @@ import 'package:flutter_blog/ui/widgets/custom_elavated_button.dart';
 import 'package:flutter_blog/ui/widgets/custom_text_area.dart';
 import 'package:flutter_blog/ui/widgets/custom_text_form_field.dart';
 
+import '../../../../../data/model/post.dart';
+
 class PostUpdateForm extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _title = TextEditingController();
   final _content = TextEditingController();
 
-  PostUpdateForm({Key? key}) : super(key: key);
+  Post post;
+  PostUpdateForm(this.post);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +23,13 @@ class PostUpdateForm extends StatelessWidget {
         children: [
           CustomTextFormField(
             controller: _title,
-            initValue: "제목",
+            initValue: "${post.title}",
             hint: "Title",
           ),
           const SizedBox(height: smallGap),
           CustomTextArea(
             controller: _content,
-            hint: "Content",
+            hint: "${post.content}", // ""안에 넣으면 null point exception안터져
           ),
           const SizedBox(height: largeGap),
           CustomElevatedButton(
