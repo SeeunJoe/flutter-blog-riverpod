@@ -84,7 +84,7 @@ class SessionGVM extends Notifier<SessionUser>{
     state = SessionUser();
 
     // 3. 화면이동
-    Navigator.popAndPushNamed(mContext, "/login");
+    Navigator.pushNamedAndRemoveUntil(mContext, "/login",(route) => false);
   }
 
   // 1. SessionUser가 존재할 수 없다.

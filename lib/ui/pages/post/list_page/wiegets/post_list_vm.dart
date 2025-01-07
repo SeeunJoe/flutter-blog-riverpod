@@ -7,6 +7,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../data/repository/post_reposirtory.dart';
 
+// model만들기!
 class PostListModel {
   bool isFirst;
   bool isLast;
@@ -16,8 +17,8 @@ class PostListModel {
   List<Post> posts;
 
   PostListModel(
-      {required this.isFirst,
-        required this.isLast,
+      {required this.isFirst, // 목록의 처음이냐?
+        required this.isLast, // 목록의 마지막이냐?
         required this.pageNumber,
         required this.size,
         required this.totalPage,
@@ -50,17 +51,28 @@ class PostListModel {
             .toList();
 }
 
-final postListProvider = NotifierProvider<PostListVM, PostListModel?>(() {
+
+
+// provider 데려와!!
+final postListProvider = NotifierProvider.autoDispose<PostListVM, PostListModel?>(() {
   return PostListVM();
 });
 
-class PostListVM extends Notifier<PostListModel?> {
+
+// 클래스 시작!
+class PostListVM extends AutoDisposeNotifier<PostListModel?> {
   final refreshCtrl = RefreshController();
   final mContext = navigatorKey.currentContext!;
   PostRepository postRepository = const PostRepository();
 
   @override
   PostListModel? build() {
+    ref.onDispose(
+        (){
+          Logger().d("");
+          refreshCtrl.dispose(); // 가비지컬렉션이 바로 일어나지 않으니까
+        }
+    );
     init();
 
 /*    ref.listen<PostEvent>(postEventBusProvider, (previous, next) {
@@ -119,6 +131,7 @@ class PostListVM extends Notifier<PostListModel?> {
     refreshCtrl.loadComplete();
   }
 
+  // 삭제하기
   void remove(int id) {
     PostListModel model = state!;
 
@@ -127,6 +140,7 @@ class PostListVM extends Notifier<PostListModel?> {
     state = state!.copyWith(posts: model.posts);
   }
 
+  // 글쓰기
   void add(Post post) {
     PostListModel model = state!;
 
@@ -135,6 +149,7 @@ class PostListVM extends Notifier<PostListModel?> {
     state = state!.copyWith(posts: model.posts);
   }
 
+  // 업데이트
   void update(Post updatedPost) {
     PostListModel model = state!;
 
